@@ -1,46 +1,35 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# AO3 Skin: Word Switcher
+Hello!
 
-## Available Scripts
+This web application is an assistive tool for creating AO3 skins that can be turned on or off so that readers can read with character names or terms they may prefer.
 
-In the project directory, you can run:
+The generated skin is completely unintrusive to all readers' experiences. If the skin is on, readers will see the switched word. When the skin is off, users will see the original word. Screen readers will appropriately read which ever word is the visible one. Users who have work skins turned off will see the original word.
 
-### `npm start`
+## Example
+There is a character that may have gone unnamed in canon for long enough that fans devised a common name for them in their works. Then, suddenly, the canon shifts and this character receives an official name.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Some fans prefer the name that the fandom created, while others might prefer the the new canon name.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Anyone involved in fanworks knows that some fans are very particular about these sorts of things, sometimes avoiding works with their unpreferred name altogether.
 
-### `npm test`
+With the generated work skin, a creator can offer that accessibility to their readers. Similarly, the generated skin can easily be included alongside the code in existing work skins without affecting anything visually that may be styled.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The words are intelligently parsed, so different words that may have the chosen word within them will be unaffected. If you want to switch out the name "Ren" for "Akira", you're "appa**ren**tly"s and "a**ren**'t"s will remain safely unaffected, while every instance of "Ren", "Ren's", "Ren'd", and so forth will be switched.
 
-### `npm run build`
+## Using the web application
+Enter the word you want to switch that *currently exists in your text* as the "original word" and add the alternate word as the "switched word".
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Tip:** It may be best to have *your* perfered version as the switched word, as it will be the one most users see by default. This would also require you to alter your work with the less-preferred word. The choice is up to you.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+You can click the button to add more switched words, if you choose to do so.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+When you're ready, paste your work text into the leftmost text box. *It may be better if you allow AO3 to parse your text first, automatically adding any `<p>` and `</p>` tags before you do this, but it is not necessary.* Click the button to generate the formatted text.
 
-### `npm run eject`
+The middle textbox will have the properly wrapped words. The rightmost box will have the CSS you should copy into [your new work skin](https://archiveofourown.org/skins/new?skin_type=WorkSkin). 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Copy the formatted text into the body of your work, and apply the work skin you just made onto your work. Violà! There are now two versions of your work for users to view.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Questions
+If you are having trouble, or have used this application, please feel free to leave me a comment on this work! I will do my best to help you, and I'd love to see what you make with it.
+ 
