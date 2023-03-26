@@ -1,25 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
 main {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
 
   background: linear-gradient(#08111B, #456789);
   color: #fefefe;
   font-size: 16px;
-  padding: 1rem;
+  padding: 20px;
 
   min-height: 100vh;
-  min-width: 935px;
 }
 
 h1, h2 {
   text-shadow: 1px 1px 2px black;
   font-family: 'Permanent Marker', cursive;
-  font-size: 3rem;
-  margin: 0;
+  font-size: 1.6rem;
+  margin: 0 0 0.5rem 0;
 }
 
 input {
@@ -44,10 +44,10 @@ textarea {
 
 .word-switcher-inputs {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 15px;
 }
 
 .word-switcher-input {
@@ -59,23 +59,50 @@ textarea {
 
 .textarea-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   gap: 5px;
 }
 
 .button-container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-
-  min-width: 935px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .button-container button {
   min-width: 300px;
 }
 
-.preview {
-  max-width: 650px;
+/* i also dont know why im not using a preprocessor rn */
+@media screen and (min-width: 992px) {
+  main {
+    gap: 10px;
+
+    padding: 0.5rem 1.2rem 1rem;
+
+    min-width: 935px;
+  }
+
+  h1, h2 {
+    font-size: 3rem;
+  }
+
+  .word-switcher-inputs {
+    flex-direction: row;
+    gap: 10px;
+
+    max-width: 944px;
+  }
+
+  .textarea-container {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .button-container {
+    flex-direction: row;
+    gap: 10px;
+  }
 }
