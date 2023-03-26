@@ -1,8 +1,10 @@
 import { useState, type FC } from 'react';
 // @ts-ignore
-import prettier from 'https://unpkg.com/prettier@2.8.1/esm/standalone.mjs';
-// @ts-ignore
-import parserCSS from 'https://unpkg.com/prettier@2.8.1/esm/parser-postcss.mjs';
+// import prettier from 'https://unpkg.com/prettier@2.8.1/esm/standalone.mjs';
+// // @ts-ignore
+// import parserCSS from 'https://unpkg.com/prettier@2.8.1/esm/parser-postcss.mjs';
+import prettier from 'prettier/standalone';
+import parserCSS from 'prettier/parser-postcss';
 import './App.css';
 
 type WordSwitch = {
