@@ -1,40 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# AO3 Skin: Word Switcher
+Hello!
 
-First, run the development server:
+This web application is an assistive tool for creating AO3 skins that can be turned on or off so that readers can read with character names or terms they may prefer.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The generated skin is completely unintrusive to all readers' experiences. If the skin is on, readers will see the switched word. When the skin is off, users will see the original word. Screen readers will appropriately read which ever word is the visible one. Users who have work skins turned off will see the original word.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Example
+There is a character that may have gone unnamed in canon for long enough that fans devised a common name for them in their works. Then, suddenly, the canon shifts and this character receives an official name.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Some fans prefer the name that the fandom created, while others might prefer the the new canon name.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Anyone involved in fanworks knows that some fans are very particular about these sorts of things, sometimes avoiding works with their unpreferred name altogether.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+With the generated work skin, a creator can offer that accessibility to their readers. Similarly, the generated skin can easily be included alongside the code in existing work skins without affecting anything visually that may be styled.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The words are intelligently parsed, so different words that may have the chosen word within them will be unaffected. If you want to switch out the name "Ren" for "Akira", you're "appa**ren**tly"s and "a**ren**'t"s will remain safely unaffected, while every instance of "Ren", "Ren's", "Ren'd", and so forth will be switched.
 
-## Learn More
+## Using the web application
+Enter the word you want to switch that *currently exists in your text* as the "original word" and add the alternate word as the "switched word".
 
-To learn more about Next.js, take a look at the following resources:
+**Tip:** It may be best to have *your* perfered version as the switched word, as it will be the one most users see by default. This would also require you to alter your work with the less-preferred word. The choice is up to you.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+You can click the button to add more switched words, if you choose to do so.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+When you're ready, paste your work text into the leftmost text box. *It may be better if you allow AO3 to parse your text first, automatically adding any `<p>` and `</p>` tags before you do this, but it is not necessary.* Click the button to generate the formatted text.
 
-## Deploy on Vercel
+The middle textbox will have the properly wrapped words. The rightmost box will have the CSS you should copy into [your new work skin](https://archiveofourown.org/skins/new?skin_type=WorkSkin). 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Copy the formatted text into the body of your work, and apply the work skin you just made onto your work. Violà! There are now two versions of your work for users to view.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Questions
+If you are having trouble, or have used this application, please feel free to leave me a comment on this work! I will do my best to help you, and I'd love to see what you make with it.
+ 

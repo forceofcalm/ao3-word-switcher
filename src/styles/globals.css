@@ -1,27 +1,169 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  margin: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+
+  background: linear-gradient(#08111b, #456789);
+  color: #fefefe;
+  font-size: 16px;
+  padding: 20px;
+
+  min-height: 100vh;
+}
+
+h1 {
+  text-shadow: 1px 1px 2px black;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.6rem;
+  margin: 0 0 0.5rem 0;
+}
+
+h2 {
+  text-shadow: 1px 1px 2px black;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+h3 {
+  text-shadow: 1px 1px 2px black;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1rem;
+  margin: 0;
+}
+
+input {
+  padding: 8px 12px;
+  border: 1px solid #fefefe;
+}
+
+button {
+  color: #fefefe;
+  cursor: pointer;
+  background: #456789;
+  border: 1px solid #fefefe;
+  border-radius: 4px;
+  font-weight: bolder;
+  text-transform: uppercase;
+  padding: 8px 12px;
+}
+
+button:hover {
+  background: #0f233a;
+
+  transition: background 0.2s ease-in-out;
+}
+
+button:disabled {
+  background: #4e5d6d;
+  color: #fefefe;
+  cursor: not-allowed;
+}
+
+textarea {
+  min-width: 300px;
+  min-height: 380px;
+
+  padding: 8px 12px;
+  border: 1px solid #fefefe;
+  resize: none;
+}
+
+.word-switcher-inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.word-switcher-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.textarea-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.button-container button {
+  min-width: 300px;
+}
+
+.preview {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+
+  width: 100%;
+}
+
+.preview div {
+  width: 100%;
+}
+
+.preview div h2,
+.preview div h3 {
+  margin: 0;
+
+  text-align: center;
+}
+
+.preview {
+  font-family: 'Tahoma', sans-serif;
+}
+
+/* i also dont know why im not using a preprocessor rn */
+@media screen and (min-width: 992px) {
+  main {
+    gap: 10px;
+
+    padding: 0.5rem 1.2rem 1rem;
+
+    min-width: 935px;
+  }
+
+  h1,
+  h2 {
+    font-size: 3rem;
+  }
+
+  .word-switcher-inputs {
+    flex-direction: row;
+    gap: 10px;
+
+    max-width: 944px;
+  }
+
+  .textarea-container {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .button-container {
+    flex-direction: row;
+    gap: 10px;
+  }
 }
