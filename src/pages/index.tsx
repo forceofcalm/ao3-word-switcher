@@ -98,6 +98,7 @@ const Main: FC = () => {
             visibility: visible;
             font-size: 1rem;
             letter-spacing: normal;
+            margin: 0 -0.3rem;
             speak: always;
         }`;
       }
@@ -131,10 +132,7 @@ const Main: FC = () => {
       <div className="word-switcher-inputs">
         {switchedWords.map((wordSwitch: WordSwitch, index: number) => {
           return (
-            <div
-              className="word-switcher-input"
-              key={wordSwitch.original + index}
-            >
+            <div className="word-switcher-input">
               <input
                 type="text"
                 onChange={(event: ChangeEvent<HTMLInputElement>) => {
