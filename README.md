@@ -15,7 +15,7 @@ Anyone involved in fanworks knows that some fans are very particular about these
 
 With the generated work skin, a creator can offer that accessibility to their readers. Similarly, the generated skin can easily be included alongside the code in existing work skins without affecting anything visually that may be styled.
 
-The words are intelligently parsed, so different words that may have the chosen word within them will be unaffected. If you want to switch out the name "Ren" for "Akira", you're "appa**ren**tly"s and "a**ren**'t"s will remain safely unaffected, while every instance of "Ren", "Ren's", "Ren'd", and so forth will be switched.
+The words are intelligently parsed, so different words that may have the chosen word within them will be unaffected. If you want to switch out the name "Ren" for "Akira", your "appa**ren**tly"s and "a**ren**'t"s will remain safely unaffected, while every instance of "Ren", "Ren's", "Ren'd", and so forth will be switched.
 
 ## Using the web application
 Enter the word you want to switch that *currently exists in your text* as the "original word" and add the alternate word as the "switched word".
@@ -24,11 +24,11 @@ Enter the word you want to switch that *currently exists in your text* as the "o
 
 You can click the button to add more switched words, if you choose to do so.
 
-When you're ready, paste your work text into the leftmost text box. *It may be better if you allow AO3 to parse your text first, automatically adding any `<p>` and `</p>` tags before you do this, but it is not necessary.* Click the button to generate the formatted text.
+When you're ready, paste your work text into the leftmost text box. *It may be better if you allow AO3 to parse your text first, automatically adding any `<p>` and `</p>` tags before you do this, but it is not necessary, as this will add them for you if you do not have them.* The previews, formatted text, and work skin code will be updated automatically.
 
-The middle textbox will have the properly wrapped words. The rightmost box will have the CSS you should copy into [your new work skin](https://archiveofourown.org/skins/new?skin_type=WorkSkin). 
+The formatted text is what you will copy into as your work text. The work skin code should be pasted into [your new work skin](https://archiveofourown.org/skins/new?skin_type=WorkSkin). You can copy this text by clicking the button, and paste them by clicking the text box you want to paste into and holding `CTRL` (Windows) or `CMD` (MacOS) and hitting `V`.
 
-Copy the formatted text into the body of your work, and apply the work skin you just made onto your work. Violà! There are now two versions of your work for users to view.
+Copy the formatted text into the body of your work, and apply the work skin you just made onto your work. Violà! There are now two versions of your work within one work for users to view, and they can toggle between the two by turning the work skin on or off.
 
 ## Questions
 If you are having trouble, or have used this application, please feel free to leave me a comment on this work! I will do my best to help you, and I'd love to see what you make with it.

@@ -63,8 +63,9 @@ const Main: FC = () => {
       .split('\n')
       .filter((paragraph) => paragraph)
       .reduce((accumulator, paragraph) => {
-        console.log('para', paragraph);
-        return (accumulator += `<p>${paragraph}</p>`);
+        return (accumulator += paragraph.match(/<p>/)
+          ? paragraph
+          : `<p>${paragraph}</p>`);
       }, '');
 
     let formattedHTML: string = await format(paragraphedText, {
@@ -130,7 +131,10 @@ const Main: FC = () => {
       <div className="word-switcher-inputs">
         {switchedWords.map((wordSwitch: WordSwitch, index: number) => {
           return (
-            <div className="word-switcher-input">
+            <div
+              className="word-switcher-input"
+              key={wordSwitch.original + index}
+            >
               <input
                 type="text"
                 onChange={(event: ChangeEvent<HTMLInputElement>) => {
@@ -139,6 +143,7 @@ const Main: FC = () => {
 
                   setSwitchedWords(newSwitchedWords);
                 }}
+                pattern="^[a-zA-Z0-9 ]*$"
                 placeholder="Original Word"
                 value={wordSwitch.original}
               />
@@ -151,6 +156,7 @@ const Main: FC = () => {
 
                   setSwitchedWords(newSwitchedWords);
                 }}
+                pattern="^[a-zA-Z0-9 ]*$"
                 placeholder="Switched Word"
                 value={wordSwitch.switchedTo}
               />
