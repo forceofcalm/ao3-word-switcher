@@ -9,9 +9,6 @@ interface WordSwitch {
   switchedTo: string;
 }
 
-// todo: generate on change
-// text change, word being added/removed
-
 const Main: FC = () => {
   const [rawText, setRawText] = useState<string>('');
   const [formattedText, setFormattedText] = useState<string>('');
@@ -22,6 +19,14 @@ const Main: FC = () => {
     },
   ]);
   const [generatedCSS, setGeneratedCSS] = useState<string>('');
+
+  const getCleansedWord = (word: string): string => {
+    return word
+      .toLowerCase()
+      .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
+      .split(' ')
+      .join('-');
+  };
 
   const addNewSwitchedWord = () => {
     let newSwitchedWords: WordSwitch[] = [...switchedWords];
@@ -47,14 +52,44 @@ const Main: FC = () => {
 
     switchedWords.forEach((wordSwitch: WordSwitch, index: number) => {
       if (wordSwitch.original && wordSwitch.switchedTo) {
-        const regex = new RegExp(String.raw`\b${wordSwitch.original}\b`, 'gm');
-        rawTextCopy = rawTextCopy.replace(
-          regex,
-          `<span class="${wordSwitch.original
-            .toLowerCase()
-            .split(' ')
-            .join('-')}">${wordSwitch.original}</span>`
+        // word is not followed by punctuation
+        const regexNoPunctuation = new RegExp(
+          String.raw`(?<!class=")\b${wordSwitch.original}+(?![\p{P}])\b`,
+          'gu'
         );
+        rawTextCopy = rawTextCopy.replace(
+          regexNoPunctuation,
+          `<span class="${getCleansedWord(wordSwitch.original)}">${
+            wordSwitch.original
+          }</span>`
+        );
+
+        // word is followed by punctuation
+        const regexPunctuation = new RegExp(
+          String.raw`(?<!class=")\b${wordSwitch.original}([\p{P}])`,
+          'gu'
+        );
+
+        let punctuationMatchArray: string[] = [];
+        let currentMatch: RegExpExecArray | null;
+
+        while ((currentMatch = regexPunctuation.exec(rawTextCopy))) {
+          punctuationMatchArray.push(currentMatch[0]);
+        }
+
+        console.log(punctuationMatchArray);
+
+        // dont replace the last character
+        punctuationMatchArray.forEach((match) => {
+          rawTextCopy = rawTextCopy.replace(
+            regexPunctuation,
+            (match, punctuation) => {
+              return `<span class="${
+                getCleansedWord(wordSwitch.original) + '-punctuated'
+              }">${wordSwitch.original}</span>${punctuation}`;
+            }
+          );
+        });
       }
     });
 
@@ -74,8 +109,6 @@ const Main: FC = () => {
       htmlWhitespaceSensitivity: 'ignore',
     });
 
-    console.log(formattedHTML);
-
     setFormattedText(formattedHTML);
   };
 
@@ -84,21 +117,35 @@ const Main: FC = () => {
 
     switchedWords.forEach((wordSwitch: WordSwitch, index: number) => {
       if (wordSwitch.original && wordSwitch.switchedTo) {
-        cssString += `span.${wordSwitch.original
-          .toLowerCase()
-          .split(' ')
-          .join('-')} {
+        let punctuationLetterDifference = -wordSwitch.original.length - 1;
+        let noPunctuationLetterDifference = -wordSwitch.original.length;
+
+        console.log(punctuationLetterDifference, noPunctuationLetterDifference);
+
+        const cleansedOriginalWord = getCleansedWord(wordSwitch.original);
+
+        cssString += `span.${cleansedOriginalWord} {
             visibility: hidden;
-            font-size: 1px;
-            letter-spacing: -1px;
             speak: never;
+            margin: 0 ${noPunctuationLetterDifference}ch 0 0;
         }
-        span.${wordSwitch.original.toLowerCase().split(' ').join('-')}:before {
+        span.${cleansedOriginalWord}:before {
             content: '${wordSwitch.switchedTo}';
             visibility: visible;
-            font-size: 1rem;
+            font-size: 1em;
             letter-spacing: normal;
-            margin: 0 -0.3rem;
+            speak: always;
+        }
+        span.${cleansedOriginalWord + '-punctuated'} {
+            visibility: hidden;
+            speak: never;
+            margin: 0 ${punctuationLetterDifference}ch 0 0;
+        }
+        span.${cleansedOriginalWord + '-punctuated'}:before {
+            content: '${wordSwitch.switchedTo}';
+            visibility: visible;
+            font-size: 1em;
+            letter-spacing: normal;
             speak: always;
         }`;
       }
@@ -132,7 +179,7 @@ const Main: FC = () => {
       <div className="word-switcher-inputs">
         {switchedWords.map((wordSwitch: WordSwitch, index: number) => {
           return (
-            <div className="word-switcher-input">
+            <div className="word-switcher-input" key={`word-switch-${index}`}>
               <input
                 type="text"
                 onChange={(event: ChangeEvent<HTMLInputElement>) => {
@@ -144,6 +191,7 @@ const Main: FC = () => {
                 pattern="^[a-zA-Z0-9 ]*$"
                 placeholder="Original Word"
                 value={wordSwitch.original}
+                key={`original-${index}`}
               />
 
               <input
@@ -157,11 +205,13 @@ const Main: FC = () => {
                 pattern="^[a-zA-Z0-9 ]*$"
                 placeholder="Switched Word"
                 value={wordSwitch.switchedTo}
+                key={`switched-${index}`}
               />
 
               <button
                 onClick={() => removeSwitchedWord(index)}
                 disabled={!(switchedWords.length > 1)}
+                key={`remove-${index}`}
               >
                 Remove
               </button>
@@ -181,7 +231,7 @@ const Main: FC = () => {
           placeholder="Paste your AO3 work text here"
         />
 
-        {/* <textarea
+        <textarea
           className="formatted"
           placeholder="Formatted HTML will appear here"
           value={formattedText}
@@ -191,17 +241,17 @@ const Main: FC = () => {
           className="css"
           placeholder="Generated CSS will appear here"
           value={generatedCSS}
-        /> */}
+        />
       </div>
 
-      {/* <button
+      <button
         onClick={() => {
           createFormattedText();
           createGeneratedCSS();
         }}
       >
         Generate Formatted Text
-      </button> */}
+      </button>
       <button onClick={() => copyTextToClipboard(formattedText)}>
         Copy Formatted Text to Clipboard
       </button>
@@ -222,7 +272,6 @@ const Main: FC = () => {
                 .split('\n')
                 .filter((paragraph) => paragraph)
                 .reduce((accumulator, paragraph) => {
-                  console.log('para', paragraph);
                   return (accumulator += `<p>${paragraph}</p>`);
                 }, ''),
             }}

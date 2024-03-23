@@ -13,7 +13,7 @@ main {
 
   background: linear-gradient(#08111b, #456789);
   color: #fefefe;
-  font-size: 16px;
+  font-size: 22px;
   padding: 20px;
 
   min-height: 100vh;
@@ -116,6 +116,8 @@ textarea {
   justify-content: space-between;
   align-items: center;
   gap: 15px;
+
+  font-family: 'Courier New', monospace !important;
 
   width: 100%;
 }
